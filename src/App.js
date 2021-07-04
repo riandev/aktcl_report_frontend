@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard/Dashboard"
 import FinalReport from './components/Dashboard/FinalReport/FinalReport';
+import TmrReport from './components/Dashboard/TmrReport/TmrReport';
+import TerritoryReports from './components/Dashboard/TerritoryReport/TerritoryReport';
 
 function App() {
   return (
@@ -18,6 +20,12 @@ function App() {
     </Route>
     <Route exact path="/dashboard/report">
       <FinalReport></FinalReport>
+    </Route>
+    <Route exact path="/dashboard/tmrReport">
+      <TmrReport></TmrReport>
+    </Route>
+    <Route exact path="/dashboard/territoryReports">
+      <TerritoryReports></TerritoryReports>
     </Route>
   </Switch>
 </Router>

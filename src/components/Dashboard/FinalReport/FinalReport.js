@@ -78,7 +78,6 @@ const FinalReport = () => {
           </CSVLink>
         </button>
       </div>
-      <h1>Hello</h1>
     </div>
   );
 };
