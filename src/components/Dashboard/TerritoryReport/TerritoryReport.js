@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import aktcl from "../../../image/aktcl.png";
+import fifotech from "../../../image/logo_s.png";
 
 const TerritoryReport = () => {
   const [territoryRport, setTerritoryReport] = useState([]);
@@ -50,7 +52,14 @@ const TerritoryReport = () => {
   );
   return (
     <div className="m-3">
-      <h2>Territory Report</h2>
+      <div className="d-flex justify-content-between">
+        <img className="img-fluid image-design" src={aktcl} alt="" />
+        <img className="img-fluid image-design" src={fifotech} alt="" />
+      </div>
+      <h4 className="text-center">Abdul Khair Tobacco Company Ltd.</h4>
+      <h5 className="text-center mb-4">
+        Call Center Verification Territory Report
+      </h5>
       <div className="text-center">
         <table className="table bordered table-hover">
           <thead>
@@ -172,7 +181,7 @@ const TerritoryReport = () => {
                         ((query.sumTarget - query.sumValiddata) /
                           query.sumTarget) *
                           100
-                      )}
+                      ) + "%"}
                 </td>
                 <td>{query.sumValiddata}</td>
                 <td>
@@ -180,7 +189,8 @@ const TerritoryReport = () => {
                     Math.round((query.sumValiddata / query.sumTarget) * 100)
                   )
                     ? 0
-                    : Math.round((query.sumValiddata / query.sumTarget) * 100)}
+                    : Math.round((query.sumValiddata / query.sumTarget) * 100) +
+                      "%"}
                 </td>
 
                 <td>{query.sumConnectedCall}</td>
@@ -193,7 +203,7 @@ const TerritoryReport = () => {
                     ? 0
                     : Math.round(
                         (query.sumConnectedCall / query.sumValiddata) * 100
-                      )}
+                      ) + "%"}
                 </td>
 
                 <td>{query.sumTrueContact}</td>
@@ -206,20 +216,20 @@ const TerritoryReport = () => {
                     ? 0
                     : Math.round(
                         (query.sumTrueContact / query.sumConnectedCall) * 100
-                      )}
+                      ) + "%"}
                 </td>
 
                 <td>{query.sumNotContacted}</td>
                 <td>
                   {isNaN(
                     Math.round(
-                      (query.sumNotContacted / query.sumNotContacted) * 100
+                      (query.sumNotContacted / query.sumConnectedCall) * 100
                     )
                   )
                     ? 0
                     : Math.round(
-                        (query.sumNotContacted / query.sumNotContacted) * 100
-                      )}
+                        (query.sumNotContacted / query.sumConnectedCall) * 100
+                      ) + "%"}
                 </td>
 
                 <td>{query.sumNonSOB1 + query.sumNonSOB2}</td>
@@ -236,7 +246,7 @@ const TerritoryReport = () => {
                         ((query.sumNonSOB1 + query.sumNonSOB2) /
                           query.sumConnectedCall) *
                           100
-                      )}
+                      ) + "%"}
                 </td>
                 <td>{query.sumextMSB}</td>
                 <td>
@@ -246,7 +256,7 @@ const TerritoryReport = () => {
                     ? 0
                     : Math.round(
                         (query.sumextMSB / query.sumConnectedCall) * 100
-                      )}
+                      ) + "%"}
                 </td>
                 <td>{query.sumFalseContact}</td>
                 <td>
@@ -258,7 +268,7 @@ const TerritoryReport = () => {
                     ? 0
                     : Math.round(
                         (query.sumFalseContact / query.sumConnectedCall) * 100
-                      )}
+                      ) + "%"}
                 </td>
 
                 <td>{query.sumNoFreeSample}</td>
@@ -277,7 +287,7 @@ const TerritoryReport = () => {
                         ((query.sumNoFreeSample + query.sumLessFreeSample) /
                           query.sumConnectedCall) *
                           100
-                      )}
+                      ) + "%"}
                 </td>
                 <td>{query.sumTeaSnaks}</td>
                 <td>
@@ -289,7 +299,7 @@ const TerritoryReport = () => {
                     ? 0
                     : Math.round(
                         (query.sumTeaSnaks / query.sumConnectedCall) * 100
-                      )}
+                      ) + "%"}
                 </td>
 
                 <td>{query.sumRetention}</td>
@@ -302,47 +312,102 @@ const TerritoryReport = () => {
                     ? 0
                     : Math.round(
                         (query.sumRetention / query.sumConnectedCall) * 100
-                      )}
+                      ) + "%"}
                 </td>
               </tr>
             ))}
           </tbody>
           <tfoot>
             <tr>
-              <td colspan="2">Total</td>
+              <td
+                style={{ fontWeight: "bold", backgroundColor: "lightgray" }}
+                colspan="2"
+              >
+                Total
+              </td>
 
-              <td>{totalTarget}</td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {totalTarget}
+              </td>
 
-              <td>{totalLessContact}</td>
-              <td>{lessConnectedPercentage}</td>
-              <td>{totalValid}</td>
-              <td>{validPercentage}</td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {totalLessContact}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {lessConnectedPercentage + "%"}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {totalValid}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {validPercentage + "%"}
+              </td>
 
-              <td>{totalConnected}</td>
-              <td>{connectedPercentage}</td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {totalConnected}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {connectedPercentage + "%"}
+              </td>
 
-              <td>{totalTruelyConnected}</td>
-              <td>{TruelyConnectedPercentage}</td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {totalTruelyConnected}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "yellow" }}>
+                {TruelyConnectedPercentage + "%"}
+              </td>
 
-              <td>{totalNotConnected}</td>
-              <td>{notConnectedPercentage}</td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {totalNotConnected}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {notConnectedPercentage + "%"}
+              </td>
 
-              <td>{totalwtgnonSOB}</td>
-              <td>{wtgnonsobPercentage}</td>
-              <td>{totalextMSB}</td>
-              <td>{extmsbPercentage}</td>
-              <td>{totalFalseContact}</td>
-              <td>{falseContactPercentage}</td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {totalwtgnonSOB}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {wtgnonsobPercentage + "%"}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {totalextMSB}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {extmsbPercentage + "%"}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "yellow" }}>
+                {totalFalseContact}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {falseContactPercentage + "%"}
+              </td>
 
-              <td>{totalnoFreeSample}</td>
-              <td>{totallessFreeSample}</td>
-              <td>{totalnoandlessSample}</td>
-              <td>{nolessPercentage}</td>
-              <td>{totalTeasnaks}</td>
-              <td>{teasnaksPercentage}</td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {totalnoFreeSample}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {totallessFreeSample}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {totalnoandlessSample}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {nolessPercentage + "%"}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {totalTeasnaks}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {teasnaksPercentage + "%"}
+              </td>
 
-              <td>{totalretention}</td>
-              <td>{retentionPercentage}</td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {totalretention}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {retentionPercentage + "%"}
+              </td>
             </tr>
           </tfoot>
         </table>

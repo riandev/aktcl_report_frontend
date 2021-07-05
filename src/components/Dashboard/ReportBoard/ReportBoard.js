@@ -18,12 +18,24 @@ const ReportBoard = () => {
   const [lessFreeSample, setLessFreeSample] = useState([]);
   const [teaSnaks, setTeaSnaks] = useState([]);
   const [retention, setRetention] = useState([]);
-  console.log(falseContact);
+
   const [status1, setStatus1] = useState(false);
-  const [status2, setStatus2] = useState(null);
-  const [status3, setStatus3] = useState(null);
-  const [status4, setStatus4] = useState(null);
-  const [status5, setStatus5] = useState(null);
+  const [status2, setStatus2] = useState(false);
+  const [status3, setStatus3] = useState(false);
+  const [status4, setStatus4] = useState(false);
+  const [status6, setStatus6] = useState(false);
+  const [status7, setStatus7] = useState(false);
+  const [status8, setStatus8] = useState(false);
+  const [status9, setStatus9] = useState(false);
+  const [status10, setStatus10] = useState(false);
+  const [status11, setStatus11] = useState(false);
+  const [status12, setStatus12] = useState(false);
+  const [status13, setStatus13] = useState(false);
+  const [status14, setStatus14] = useState(false);
+  const [status15, setStatus15] = useState(false);
+  const [status16, setStatus16] = useState(false);
+  const [status17, setStatus17] = useState(false);
+  const [status18, setStatus18] = useState(false);
 
   const handleConnected = () => {
     fetch("http://localhost:5002/updateConnectCall")
@@ -103,7 +115,7 @@ const ReportBoard = () => {
       body: JSON.stringify(extMSB),
     })
       .then((res) => res.json())
-      .then((data) => setStatus5(data));
+      .then((data) => setStatus6(data));
   };
   const handleNotContacted1 = () => {
     fetch("http://localhost:5002/notContacted1")
@@ -121,7 +133,7 @@ const ReportBoard = () => {
       body: JSON.stringify(notContacted1),
     })
       .then((res) => res.json())
-      .then((data) => setStatus5(data));
+      .then((data) => setStatus7(data));
   };
   const handleNotContacted2 = () => {
     fetch("http://localhost:5002/notContacted2")
@@ -139,7 +151,7 @@ const ReportBoard = () => {
       body: JSON.stringify(notContacted2),
     })
       .then((res) => res.json())
-      .then((data) => setStatus5(data));
+      .then((data) => setStatus8(data));
   };
   const handleNotContacted3 = () => {
     fetch("http://localhost:5002/notContacted3")
@@ -157,7 +169,7 @@ const ReportBoard = () => {
       body: JSON.stringify(notContacted3),
     })
       .then((res) => res.json())
-      .then((data) => setStatus5(data));
+      .then((data) => setStatus9(data));
   };
   const handleNotContacted4 = () => {
     fetch("http://localhost:5002/notContacted4")
@@ -175,7 +187,7 @@ const ReportBoard = () => {
       body: JSON.stringify(notContacted4),
     })
       .then((res) => res.json())
-      .then((data) => setStatus5(data));
+      .then((data) => setStatus10(data));
   };
   const handleNotContacted = () => {
     fetch("http://localhost:5002/finalNotContacted")
@@ -193,7 +205,7 @@ const ReportBoard = () => {
       body: JSON.stringify(finalNotContacted),
     })
       .then((res) => res.json())
-      .then((data) => setStatus5(data));
+      .then((data) => setStatus11(data));
   };
   const handlePureNotContacted = () => {
     fetch("http://localhost:5002/finalNotContacted2")
@@ -211,7 +223,7 @@ const ReportBoard = () => {
       body: JSON.stringify(finalPureNotContacted),
     })
       .then((res) => res.json())
-      .then((data) => setStatus5(data));
+      .then((data) => setStatus12(data));
   };
 
   const handleFalseContact = () => {
@@ -230,7 +242,7 @@ const ReportBoard = () => {
       body: JSON.stringify(falseContact),
     })
       .then((res) => res.json())
-      .then((data) => setStatus5(data));
+      .then((data) => setStatus13(data));
   };
   const handleVerifyTrueContact = () => {
     fetch("http://localhost:5002/verifyFalseContact")
@@ -248,7 +260,7 @@ const ReportBoard = () => {
       body: JSON.stringify(verifyTrueContact),
     })
       .then((res) => res.json())
-      .then((data) => setStatus5(data));
+      .then((data) => setStatus14(data));
   };
   const handlenoFreeSample = () => {
     fetch("http://localhost:5002/noFreeSample")
@@ -264,7 +276,7 @@ const ReportBoard = () => {
       body: JSON.stringify(noFreeSample),
     })
       .then((res) => res.json())
-      .then((data) => setStatus5(data));
+      .then((data) => setStatus15(data));
   };
   const handleLessFreeSample = () => {
     fetch("http://localhost:5002/lessFreeSample")
@@ -282,7 +294,7 @@ const ReportBoard = () => {
       body: JSON.stringify(lessFreeSample),
     })
       .then((res) => res.json())
-      .then((data) => setStatus5(data));
+      .then((data) => setStatus16(data));
   };
   const handleTeaSnaks = () => {
     fetch("http://localhost:5002/teaSnaks")
@@ -298,7 +310,7 @@ const ReportBoard = () => {
       body: JSON.stringify(teaSnaks),
     })
       .then((res) => res.json())
-      .then((data) => setStatus5(data));
+      .then((data) => setStatus17(data));
   };
   const handleRetention = () => {
     fetch("http://localhost:5002/retention")
@@ -314,221 +326,315 @@ const ReportBoard = () => {
       body: JSON.stringify(retention),
     })
       .then((res) => res.json())
-      .then((data) => setStatus5(data));
+      .then((data) => setStatus18(data));
   };
   return (
-    <div>
-      <div>
+    <div className="text-center">
+      <div className="card w-75 container mt-2 p-3">
         <h4>Step 1</h4>
         <p>
           Update Status Of Connected Call: {status1 === true && <p>Done</p>}
         </p>
-        <button className="btn btn-danger" onClick={handleConnected}>
-          Generate Connected Call
-        </button>
+        <div className="d-flex justify-content-around">
+          <button className="btn btn-danger" onClick={handleConnected}>
+            Generate Connected Call
+          </button>
+          <h5>{condition1.length > 0 ? "Done" : "Not Done"}</h5>
+        </div>
         <br />
-        <br />
-        <button onClick={handleCondition1} className="btn btn-danger">
-          Update Condition1
-        </button>
-        {status1 === true && alert("Connected Call Generated")}
+        <div className="d-flex justify-content-around">
+          <button onClick={handleCondition1} className="btn btn-danger">
+            Update Connected Call
+          </button>
+          <h5>{status1.message === true ? "Done" : "Not Done"}</h5>
+        </div>
       </div>
-      <div>
+      <div className="card w-75 container mt-2 p-3">
         <div>
           <h4>Step 2</h4>
           <p>Update Status Of True Contact: </p>
-          <button className="btn btn-danger" onClick={handleTrueContact}>
-            Generate True Contact
-          </button>
+          <div className="d-flex justify-content-around">
+            <button className="btn btn-danger" onClick={handleTrueContact}>
+              Generate True Contact
+            </button>
+            <h5>{trueContact.length > 0 ? "Done" : "Not Done"}</h5>
+          </div>
           <br />
-          <br />
-          <button onClick={updateTrueContact} className="btn btn-danger">
-            Update True Contact
-          </button>
+          <div className="d-flex justify-content-around">
+            <button onClick={updateTrueContact} className="btn btn-danger">
+              Update True Contact
+            </button>
+            <h5>{status2.message === true ? "Done" : "Not Done"}</h5>
+          </div>
         </div>
-        {status2 === "true" && alert("True Contact Generated")}
       </div>
-      <div>
+      <div className="card w-75 container mt-2 p-3">
         <div>
           <h4>Step 3</h4>
           <p>Update Status Of Update NonSOB1: </p>
-          <button className="btn btn-danger" onClick={handleSOB1}>
-            Generate NonSOB1
-          </button>
+          <div className="d-flex justify-content-around">
+            <button className="btn btn-danger" onClick={handleSOB1}>
+              Generate NonSOB1
+            </button>
+            <h5>{sob1.length > 0 ? "Done" : "Not Done"}</h5>
+          </div>
           <br />
-          <br />
-          <button onClick={updateSOB1} className="btn btn-danger">
-            Update NonSOB1
-          </button>
+          <div className="d-flex justify-content-around">
+            <button onClick={updateSOB1} className="btn btn-danger">
+              Update NonSOB1
+            </button>
+            <h5>{status3.message === true ? "Done" : "Not Done"}</h5>
+          </div>
         </div>
-        {status3 === "true" && alert("NonSOB1 Generated")}
       </div>
-      <div>
+      <div className="card w-75 container mt-2 p-3">
         <div>
           <h4>Step 4</h4>
           <p>Update Status Of Update NonSOB2: </p>
-          <button className="btn btn-danger" onClick={handleSOB2}>
-            Generate NonSOB2
-          </button>
+          <div className="d-flex justify-content-around">
+            <button className="btn btn-danger" onClick={handleSOB2}>
+              Generate NonSOB2
+            </button>
+            <h5>{sob2.length > 0 ? "Done" : "Not Done"}</h5>
+          </div>
           <br />
-          <br />
-          <button onClick={updateSOB2} className="btn btn-danger">
-            Update NonSOB2
-          </button>
+          <div className="d-flex justify-content-around">
+            <button onClick={updateSOB2} className="btn btn-danger">
+              Update NonSOB2
+            </button>
+            <h5>{status4.message === true ? "Done" : "Not Done"}</h5>
+          </div>
         </div>
-        {status4 === "true" && alert("NonSOB2 Generated")}
       </div>
-      <div>
+      <div className="card w-75 container mt-2 p-3">
         <div>
           <h4>Step 5</h4>
           <p>Update Status Of Update Ext MSB: </p>
-          <button className="btn btn-danger" onClick={handleExtMSB}>
-            Generate EXT MSB
-          </button>
+          <div className="d-flex justify-content-around">
+            <button className="btn btn-danger" onClick={handleExtMSB}>
+              Generate EXT MSB
+            </button>
+            <h5>{extMSB.length > 0 ? "Done" : "Not Done"}</h5>
+          </div>
           <br />
-          <br />
-          <button onClick={updateExtMSB} className="btn btn-danger">
-            Update EXT MSB
-          </button>
+          <div className="d-flex justify-content-around">
+            <button onClick={updateExtMSB} className="btn btn-danger">
+              Update EXT MSB
+            </button>
+            <h5>{status6.message === true ? "Done" : "Not Done"}</h5>
+          </div>
         </div>
-        {status5 === "true" && alert("NonSOB2 Generated")}
       </div>
-      <div>
+      <div className="card w-75 container mt-2 p-3">
         <div>
           <h4>Step 6</h4>
           <p>Update Status Of Update Not Contacted 1: </p>
-          <button className="btn btn-danger" onClick={handleNotContacted1}>
-            Generate Not Contacted 1
-          </button>
-          <button onClick={updateNotContacted1} className="btn btn-danger">
-            Update Not Contacted 1
-          </button>
+          <div className="d-flex justify-content-around">
+            <button className="btn btn-danger" onClick={handleNotContacted1}>
+              Generate Not Contacted 1
+            </button>
+            <h5>{notContacted1.length > 0 ? "Done" : "Not Done"}</h5>
+          </div>
+          <br />
+          <div className="d-flex justify-content-around">
+            <button onClick={updateNotContacted1} className="btn btn-danger">
+              Update Not Contacted 1
+            </button>
+            <h5>{status7.message === true ? "Done" : "Not Done"}</h5>
+          </div>
           <p>Update Status Of Update Not Contacted 2: </p>
-          <button className="btn btn-danger" onClick={handleNotContacted2}>
-            Generate Not Contacted 2
-          </button>
-          <button onClick={updateNotContacted2} className="btn btn-danger">
-            Update Not Contacted 2
-          </button>
+          <div className="d-flex justify-content-around">
+            <button className="btn btn-danger" onClick={handleNotContacted2}>
+              Generate Not Contacted 2
+            </button>
+            <h5>{notContacted2.length > 0 ? "Done" : "Not Done"}</h5>
+          </div>
+          <br />
+          <div className="d-flex justify-content-around">
+            <button onClick={updateNotContacted2} className="btn btn-danger">
+              Update Not Contacted 2
+            </button>
+            <h5>{status8.message === true ? "Done" : "Not Done"}</h5>
+          </div>
           <p>Update Status Of Update Not Contacted 3: </p>
-          <button className="btn btn-danger" onClick={handleNotContacted3}>
-            Generate Not Contacted 3
-          </button>
-          <button onClick={updateNotContacted3} className="btn btn-danger">
-            Update Not Contacted 3
-          </button>
+          <div className="d-flex justify-content-around">
+            <button className="btn btn-danger" onClick={handleNotContacted3}>
+              Generate Not Contacted 3
+            </button>
+            <h5>{notContacted3.length > 0 ? "Done" : "Not Done"}</h5>
+          </div>
+          <br />
+          <div className="d-flex justify-content-around">
+            <button onClick={updateNotContacted3} className="btn btn-danger">
+              Update Not Contacted 3
+            </button>
+            <h5>{status9.message === true ? "Done" : "Not Done"}</h5>
+          </div>
+
           <p>Update Status Of Update Not Contacted 4: </p>
-          <button className="btn btn-danger" onClick={handleNotContacted4}>
-            Generate Not Contacted 4
-          </button>
-          <button onClick={updateNotContacted4} className="btn btn-danger">
-            Update Not Contacted 4
-          </button>
+          <div className="d-flex justify-content-around">
+            <button className="btn btn-danger" onClick={handleNotContacted4}>
+              Generate Not Contacted 4
+            </button>
+            <h5>{notContacted4.length > 0 ? "Done" : "Not Done"}</h5>
+          </div>
+          <br />
+          <div className="d-flex justify-content-around">
+            <button onClick={updateNotContacted4} className="btn btn-danger">
+              Update Not Contacted 4
+            </button>
+            <h5>{status10.message === true ? "Done" : "Not Done"}</h5>
+          </div>
           <p>Update Status Of Update Final Not Contacted: </p>
-          <button className="btn btn-danger" onClick={handleNotContacted}>
-            Generate Not Contacted
-          </button>
-          <button onClick={updateNotContacted} className="btn btn-danger">
-            Update Not Contacted
-          </button>
+          <div className="d-flex justify-content-around">
+            <button className="btn btn-danger" onClick={handleNotContacted}>
+              Generate Not Contacted
+            </button>
+            <h5>{finalNotContacted.length > 0 ? "Done" : "Not Done"}</h5>
+          </div>
+          <br />
+          <div className="d-flex justify-content-around">
+            <button onClick={updateNotContacted} className="btn btn-danger">
+              Update Not Contacted
+            </button>
+            <h5>{status11.message === true ? "Done" : "Not Done"}</h5>
+          </div>
+
           <p>Update Status Of Update Purefy Not Contacted: </p>
-          <button className="btn btn-danger" onClick={handlePureNotContacted}>
-            Generate Pure Not Contacted
-          </button>
-          <button onClick={updatePureNotContacted} className="btn btn-danger">
-            Update Pure Not Contacted
-          </button>
+          <div className="d-flex justify-content-around">
+            <button className="btn btn-danger" onClick={handlePureNotContacted}>
+              Generate Pure Not Contacted
+            </button>
+            <h5>{finalPureNotContacted.length > 0 ? "Done" : "Not Done"}</h5>
+          </div>
+          <br />
+          <div className="d-flex justify-content-around">
+            <button onClick={updatePureNotContacted} className="btn btn-danger">
+              Update Pure Not Contacted
+            </button>
+            <h5>{status12.message === true ? "Done" : "Not Done"}</h5>
+          </div>
         </div>
       </div>
-      <div>
+      <div className="card w-75 container mt-2 p-3">
         <div>
           <h4>Step 7</h4>
           <p>Update Status Of False Contact: </p>
-          <button className="btn btn-danger" onClick={handleFalseContact}>
-            Generate False Contact
-          </button>
+          <div className="d-flex justify-content-around">
+            <button className="btn btn-danger" onClick={handleFalseContact}>
+              Generate False Contact
+            </button>
+            <h5>{falseContact.length > 0 ? "Done" : "Not Done"}</h5>
+          </div>
           <br />
-          <br />
-          <button onClick={updateFalseContact} className="btn btn-danger">
-            Update False Contact
-          </button>
+          <div className="d-flex justify-content-around">
+            <button onClick={updateFalseContact} className="btn btn-danger">
+              Update False Contact
+            </button>
+            <h5>{status13.message === true ? "Done" : "Not Done"}</h5>
+          </div>
         </div>
-        {status5 === "true" && alert("NonSOB2 Generated")}
       </div>
-      <div>
+      <div className="card w-75 container mt-2 p-3">
         <div>
           <h4>Step 8</h4>
           <p>Verify True Contact: </p>
-          <button className="btn btn-danger" onClick={handleVerifyTrueContact}>
-            Get True === False
-          </button>
+          <div className="d-flex justify-content-around">
+            <button
+              className="btn btn-danger"
+              onClick={handleVerifyTrueContact}
+            >
+              Get True === False
+            </button>
+            <h5>{verifyTrueContact.length > 0 ? "Done" : "Not Done"}</h5>
+          </div>
           <br />
-          <br />
-          <button onClick={updateVerifyTrueContact} className="btn btn-danger">
-            Update True === False
-          </button>
+          <div className="d-flex justify-content-around">
+            <button
+              onClick={updateVerifyTrueContact}
+              className="btn btn-danger"
+            >
+              Update True === False
+            </button>
+            <h5>{status14.message === true ? "Done" : "Not Done"}</h5>
+          </div>
         </div>
-        {status5 === "true" && alert("NonSOB2 Generated")}
       </div>
-      <div>
+      <div className="card w-75 container mt-2 p-3">
         <div>
           <h4>Step 9</h4>
           <p>Update no Free Sample: </p>
-          <button className="btn btn-danger" onClick={handlenoFreeSample}>
-            Get no Free Sample
-          </button>
+          <div className="d-flex justify-content-around">
+            <button className="btn btn-danger" onClick={handlenoFreeSample}>
+              Get no Free Sample
+            </button>
+            <h5>{noFreeSample.length > 0 ? "Done" : "Not Done"}</h5>
+          </div>
           <br />
-          <br />
-          <button onClick={updatenoFreeSample} className="btn btn-danger">
-            Update no Free Sample
-          </button>
+          <div className="d-flex justify-content-around">
+            <button onClick={updatenoFreeSample} className="btn btn-danger">
+              Update no Free Sample
+            </button>
+            <h5>{status15.message === true ? "Done" : "Not Done"}</h5>
+          </div>
         </div>
-        {status5 === "true" && alert("NonSOB2 Generated")}
       </div>
-      <div>
+      <div className="card w-75 container mt-2 p-3">
         <div>
           <h4>Step 10</h4>
           <p>Update Less Free Sample: </p>
-          <button className="btn btn-danger" onClick={handleLessFreeSample}>
-            Get Less Free Sample
-          </button>
+          <div className="d-flex justify-content-around">
+            <button className="btn btn-danger" onClick={handleLessFreeSample}>
+              Get Less Free Sample
+            </button>
+            <h5>{lessFreeSample.length > 0 ? "Done" : "Not Done"}</h5>
+          </div>
           <br />
-          <br />
-          <button onClick={updateLessFreeSample} className="btn btn-danger">
-            Update Less Free Sample
-          </button>
+          <div className="d-flex justify-content-around">
+            <button onClick={updateLessFreeSample} className="btn btn-danger">
+              Update Less Free Sample
+            </button>
+            <h5>{status16.message === true ? "Done" : "Not Done"}</h5>
+          </div>
         </div>
-        {status5 === "true" && alert("NonSOB2 Generated")}
       </div>
-      <div>
+      <div className="card w-75 container mt-2 p-3">
         <div>
           <h4>Step 11</h4>
           <p>Update teaSnaks: </p>
-          <button className="btn btn-danger" onClick={handleTeaSnaks}>
-            Get teaSnaks
-          </button>
+          <div className="d-flex justify-content-around">
+            <button className="btn btn-danger" onClick={handleTeaSnaks}>
+              Get teaSnaks
+            </button>
+            <h5>{teaSnaks.length > 0 ? "Done" : "Not Done"}</h5>
+          </div>
           <br />
-          <br />
-          <button onClick={updateTeaSnaks} className="btn btn-danger">
-            Update teaSnaks
-          </button>
+          <div className="d-flex justify-content-around">
+            <button onClick={updateTeaSnaks} className="btn btn-danger">
+              Update teaSnaks
+            </button>
+            <h5>{status17.message === true ? "Done" : "Not Done"}</h5>
+          </div>
         </div>
-        {status5 === "true" && alert("NonSOB2 Generated")}
       </div>
-      <div>
+      <div className="card w-75 container mt-2 p-3">
         <div>
           <h4>Step 12</h4>
           <p>Update retention: </p>
-          <button className="btn btn-danger" onClick={handleRetention}>
-            Get retention
-          </button>
+          <div className="d-flex justify-content-around">
+            <button className="btn btn-danger" onClick={handleRetention}>
+              Get retention
+            </button>
+            <h5>{retention.length > 0 ? "Done" : "Not Done"}</h5>
+          </div>
           <br />
-          <br />
-          <button onClick={updateRetention} className="btn btn-danger">
-            Update retention
-          </button>
+          <div className="d-flex justify-content-around">
+            <button onClick={updateRetention} className="btn btn-danger">
+              Update retention
+            </button>
+            <h5>{status18.message === true ? "Done" : "Not Done"}</h5>
+          </div>
         </div>
-        {status5 === "true" && alert("NonSOB2 Generated")}
       </div>
     </div>
   );
