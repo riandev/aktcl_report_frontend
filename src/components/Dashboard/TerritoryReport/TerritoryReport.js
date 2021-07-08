@@ -4,11 +4,18 @@ import fifotech from "../../../image/logo_s.png";
 
 const TerritoryReport = () => {
   const [territoryRport, setTerritoryReport] = useState([]);
-  console.log(territoryRport);
+  const [tmstmr, setTmstmr] = useState({});
+  console.log(tmstmr);
   useEffect(() => {
     fetch("http://localhost:5002/territoryReports")
       .then((res) => res.json())
       .then((data) => setTerritoryReport(data));
+  }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:5002/reportTable")
+      .then((res) => res.json())
+      .then((data) => setTmstmr(data[0]));
   }, []);
   const totalTarget = territoryRport[0]?.grandTarget;
   const totalValid = territoryRport[0]?.grandValiddata;
@@ -50,6 +57,8 @@ const TerritoryReport = () => {
   const retentionPercentage = Math.round(
     (totalretention / totalConnected) * 100
   );
+  const targetTrueContactGrand = territoryRport[0]?.grandTrueTarget;
+  const grandAvgTerritoryExpense = territoryRport[0]?.grandAvgTerritoryExpense;
   return (
     <div className="m-3">
       <div className="d-flex justify-content-between">
@@ -120,6 +129,24 @@ const TerritoryReport = () => {
               >
                 Retaintion
               </th>
+
+              <th
+                colspan="1"
+                scope="colgroup"
+                Style="color:blue;"
+                className="text-center"
+              >
+                Minimum True Contact
+              </th>
+
+              <th
+                colspan="2"
+                scope="colgroup"
+                Style="color:blue;"
+                className="text-center"
+              >
+                Actual true contact (Based on call center report)
+              </th>
             </tr>
             <tr>
               <th className="align-middle">ID</th>
@@ -158,6 +185,23 @@ const TerritoryReport = () => {
 
               <th className="align-middle">Retaintion</th>
               <th className="align-middle">%</th>
+
+              <th className="align-middle">Numbers of Truly contacted Call</th>
+
+              <th className="align-middle">
+                Extrapulated Data (L*H/J) for Truly contacted Call
+              </th>
+              <th className="align-middle">
+                Less/More truly contacted Call numbers than minimum True
+                Contact-15 (AE-AD)
+              </th>
+
+              <th className="align-middle">
+                Per consumer average Entertainment Expenditure
+              </th>
+              <th className="align-middle">
+                Charged for deficit of minimum True Contact (Tk.) (AG*AF)
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -314,6 +358,53 @@ const TerritoryReport = () => {
                         (query.sumRetention / query.sumConnectedCall) * 100
                       ) + "%"}
                 </td>
+
+                <td>{query.sumTrueTarget}</td>
+
+                <td>
+                  {isNaN(
+                    Math.round(
+                      (query.sumTrueContact * query.sumValiddata) /
+                        query.sumConnectedCall
+                    )
+                  )
+                    ? 0
+                    : Math.round(
+                        (query.sumTrueContact * query.sumValiddata) /
+                          query.sumConnectedCall
+                      )}
+                </td>
+                <td>
+                  {Math.round(
+                    (query.sumTrueContact * query.sumValiddata) /
+                      query.sumConnectedCall
+                  ) - query.sumTrueTarget}
+                </td>
+                <td>{Math.round(query.sumAvgTerritoryExpense)}</td>
+
+                <td>
+                  {Math.round(
+                    (query.sumTrueContact * query.sumValiddata) /
+                      query.sumConnectedCall
+                  ) >= query.sumTrueTarget
+                    ? Math.round(
+                        (query.sumTrueContact * query.sumValiddata) /
+                          query.sumConnectedCall -
+                          query.sumTrueTarget
+                      ) *
+                      Math.round(
+                        query.sumAvgTerritoryExpense / query.sumValiddata
+                      ) *
+                      0
+                    : Math.round(
+                        (query.sumTrueContact * query.sumValiddata) /
+                          query.sumConnectedCall -
+                          query.sumTrueTarget
+                      ) *
+                      Math.round(
+                        query.sumAvgTerritoryExpense / query.sumValiddata
+                      )}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -407,6 +498,38 @@ const TerritoryReport = () => {
               </td>
               <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
                 {retentionPercentage + "%"}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {targetTrueContactGrand}
+              </td>
+
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {Math.round(
+                  (totalTruelyConnected * totalValid) / totalConnected
+                )}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {Math.round(
+                  (totalTruelyConnected * totalValid) / totalConnected
+                ) - targetTrueContactGrand}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {Math.round(grandAvgTerritoryExpense)}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {Math.round(
+                  (totalTruelyConnected * totalValid) / totalConnected
+                ) >= targetTrueContactGrand
+                  ? Math.round(
+                      (totalTruelyConnected * totalValid) / totalConnected -
+                        targetTrueContactGrand
+                    ) *
+                    Math.round(grandAvgTerritoryExpense / totalValid) *
+                    0
+                  : Math.round(
+                      (totalTruelyConnected * totalValid) / totalConnected -
+                        targetTrueContactGrand
+                    ) * Math.round(grandAvgTerritoryExpense / totalValid)}
               </td>
             </tr>
           </tfoot>

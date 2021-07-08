@@ -5,7 +5,6 @@ import fifotech from "../../../image/logo_s.png";
 
 const TmrReport = () => {
   const [counted, setCounts] = useState([]);
-  console.log(counted);
   useEffect(() => {
     fetch("http://localhost:5002/reportTable")
       .then((res) => res.json())
@@ -53,6 +52,8 @@ const TmrReport = () => {
   const retentionPercentage = Math.round(
     (totalretention / totalConnected) * 100
   );
+  const targetTrueContactTotal = counted[0]?.targetTrueContact * counted.length;
+  const perConsumeravgTotal = counted[0]?.grandAvgExpense;
   return (
     <div className="m-3">
       <div className="d-flex justify-content-between">
@@ -131,6 +132,22 @@ const TmrReport = () => {
               >
                 Retaintion
               </th>
+              <th
+                colspan="1"
+                scope="colgroup"
+                Style="color:blue;"
+                className="text-center"
+              >
+                Minimum True Contact
+              </th>
+              <th
+                colspan="2"
+                scope="colgroup"
+                Style="color:blue;"
+                className="text-center"
+              >
+                Actual true contact (Based on call center report)
+              </th>
             </tr>
             <tr>
               <th className="align-middle">ID</th>
@@ -171,6 +188,23 @@ const TmrReport = () => {
 
               <th className="align-middle">Retaintion</th>
               <th className="align-middle">%</th>
+
+              <th className="align-middle">Numbers of Truly contacted Call</th>
+
+              <th className="align-middle">
+                Extrapulated Data (L*H/J) for Truly contacted Call
+              </th>
+              <th className="align-middle">
+                Less/More truly contacted Call numbers than minimum True
+                Contact-15 (AE-AD)
+              </th>
+
+              <th className="align-middle">
+                Per consumer average Entertainment Expenditure
+              </th>
+              <th className="align-middle">
+                Charged for deficit of minimum True Contact (Tk.)
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -262,6 +296,41 @@ const TmrReport = () => {
                   {Math.round(
                     (query.retention / query.connected_Call_count) * 100
                   ) + "%"}
+                </td>
+
+                <td>{query.targetTrueContact}</td>
+
+                <td>
+                  {Math.round(
+                    (query.true_Contact_count * query.valid_Data_count) /
+                      query.connected_Call_count
+                  )}
+                </td>
+                <td>
+                  {Math.round(
+                    (query.true_Contact_count * query.valid_Data_count) /
+                      query.connected_Call_count
+                  ) - query.targetTrueContact}
+                </td>
+
+                <td>{Math.round(query.avgExpense)}</td>
+                <td>
+                  {Math.round(
+                    (query.true_Contact_count * query.valid_Data_count) /
+                      query.connected_Call_count
+                  ) >= query.targetTrueContact
+                    ? Math.round(
+                        (query.true_Contact_count * query.valid_Data_count) /
+                          query.connected_Call_count -
+                          query.targetTrueContact
+                      ) *
+                      Math.round(query.avgExpense / query.valid_Data_count) *
+                      0
+                    : Math.round(
+                        (query.true_Contact_count * query.valid_Data_count) /
+                          query.connected_Call_count -
+                          query.targetTrueContact
+                      ) * Math.round(query.avgExpense / query.valid_Data_count)}
                 </td>
               </tr>
             ))}
@@ -356,6 +425,37 @@ const TmrReport = () => {
               </td>
               <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
                 {retentionPercentage + "%"}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {targetTrueContactTotal}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {Math.round(
+                  (totalTruelyConnected * totalValid) / totalConnected
+                )}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {Math.round(
+                  (totalTruelyConnected * totalValid) / totalConnected
+                ) - targetTrueContactTotal}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {Math.round(perConsumeravgTotal / totalValid)}
+              </td>
+              <td style={{ fontWeight: "bold", backgroundColor: "lightgray" }}>
+                {Math.round(
+                  (totalTruelyConnected * totalValid) / totalConnected
+                ) >= targetTrueContactTotal
+                  ? Math.round(
+                      (totalTruelyConnected * totalValid) / totalConnected -
+                        targetTrueContactTotal
+                    ) *
+                    Math.round(perConsumeravgTotal / totalValid) *
+                    0
+                  : Math.round(
+                      (totalTruelyConnected * totalValid) / totalConnected -
+                        targetTrueContactTotal
+                    ) * Math.round(perConsumeravgTotal / totalValid)}
               </td>
             </tr>
           </tfoot>
